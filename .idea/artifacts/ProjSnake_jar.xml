@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ProjSnake:jar">
+    <output-path>$PROJECT_DIR$</output-path>
+    <root id="archive" name="ProjSnake.jar">
+      <element id="module-output" name="ProjCatch" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/jcommon-1.0.16.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/jfreechart-1.0.13.jar" path-in-jar="/" />
+      <element id="library" level="project" name="jcommon-1.0.16" />
+      <element id="library" level="project" name="jfreechart-1.0.13" />
+    </root>
+  </artifact>
+</component>

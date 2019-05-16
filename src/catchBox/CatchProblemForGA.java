@@ -12,7 +12,7 @@ public class CatchProblemForGA implements Problem<CatchIndividual> {
     private Cell cellCatch;
     private Cell door;
 
-    public CatchProblemForGA(LinkedList<Cell> cellsBoxes,LinkedList<Pair> pairs,Cell cellCatch,Cell door){
+    public CatchProblemForGA(LinkedList<Cell> cellsBoxes, LinkedList<Pair> pairs, Cell cellCatch, Cell door){
         //TODO
         this.cellsBoxes = cellsBoxes;
         this.pairs = pairs;
@@ -34,6 +34,18 @@ public class CatchProblemForGA implements Problem<CatchIndividual> {
             sb.append(pair.toString()+" ");
         }
         return sb.toString();
+    }
+
+    public LinkedList<Pair> getPairs() {
+        return pairs;
+    }
+
+    public Cell getCellCatch() {
+        return cellCatch;
+    }
+
+    public Cell getDoor() {
+        return door;
     }
 
     public LinkedList<Cell> getCellsBoxes() {

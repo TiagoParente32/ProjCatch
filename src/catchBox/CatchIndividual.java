@@ -14,8 +14,8 @@ public class CatchIndividual extends IntVectorIndividual<CatchProblemForGA, Catc
 
     @Override
     public double computeFitness() {
-        //TODO
-        throw new UnsupportedOperationException("Not Implemented Yet");
+        //
+        throw new UnsupportedOperationException("TODONot Implemented Yet");
     }
 
     public int[] getGenome() {

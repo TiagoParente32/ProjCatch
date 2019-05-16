@@ -1,5 +1,10 @@
 package ga;
 
+import java.util.LinkedList;
+import java.util.Random;
+
+import static ga.GeneticAlgorithm.random;
+
 public abstract class IntVectorIndividual<P extends Problem, I extends IntVectorIndividual> extends Individual<P, I> {
     //TODO this class might require the definition of additional methods and/or attributes
 
@@ -9,7 +14,22 @@ public abstract class IntVectorIndividual<P extends Problem, I extends IntVector
         super(problem);
         genome = new int[size];
         //TODO
-        throw new UnsupportedOperationException("Not Implemented Yet");
+        LinkedList<Integer> usedValues = new LinkedList<>();
+
+        //criar genoma com ordem das caixas a ser apanhadas
+        for (int i = 0; i < genome.length; i++) {
+            //faz um loop para gerar sempre valores diferentes :)
+            while (true){
+                int rand = random.nextInt(size);
+                if(!usedValues.contains(rand)) {
+                    genome[i] = rand;
+                    usedValues.add(rand);
+                    break;
+                }
+            }
+        }
+        System.out.println("boas");
+        //throw new UnsupportedOperationException("Not Implemented Yet");
       }
 
     public IntVectorIndividual(IntVectorIndividual<P, I> original) {

@@ -14,12 +14,10 @@ public class CatchProblemForGA implements Problem<CatchIndividual> {
 
     public CatchProblemForGA(LinkedList<Cell> cellsBoxes,LinkedList<Pair> pairs,Cell cellCatch,Cell door){
         //TODO
-        this.cellCatch = cellCatch;
+        this.cellsBoxes = cellsBoxes;
         this.pairs = pairs;
         this.cellCatch = cellCatch;
         this.door = door;
-
-        //throw new UnsupportedOperationException("Not Implemented Yet");
     }
 
     @Override

@@ -36,6 +36,8 @@ public class MainFrame extends JFrame implements GAListener {
     private PanelTextArea problemPanel;
     PanelTextArea bestIndividualPanel;
 
+    public int[][] matrix;
+
     private JButton buttonDataSet = new JButton("Data set");
     private JButton buttonRunGA = new JButton("GA");
     private JButton buttonRunSearch = new JButton("Search1");
@@ -181,7 +183,7 @@ public class MainFrame extends JFrame implements GAListener {
         try {
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File dataSet = fc.getSelectedFile();
-                int[][] matrix = CatchAgentSearch.readInitialStateFromFile(dataSet);
+                this.matrix = CatchAgentSearch.readInitialStateFromFile(dataSet);
                 state = new CatchState(matrix);
                 agentSearch = new CatchAgentSearch(new CatchState(matrix));
                 problemPanel.textArea.setText(agentSearch.getEnvironment().toString());
@@ -321,9 +323,14 @@ public class MainFrame extends JFrame implements GAListener {
                         for (int i = 0; i <= genome.length; i++) {
                             Cell cell;
                             if (i != genome.length)
-                                cell = (Cell) agentSearch.getInitialBox().get(genome[i] - 1);
+                                //alteramos o get(genome[i]-1) pq as nossas caixas começao em 0
+                                cell = (Cell) agentSearch.getInitialBox().get(genome[i]);
                             else
                                 cell = agentSearch.getDoor();
+
+                            //alteramos aqui para dar update ao goal que queremos chegar
+                            auxState.setGoal(cell.getLine(),cell.getColumn());
+
                             CatchProblemSearch problem = new CatchProblemSearch(auxState, cell);
                             auxSolution = agentSearch.solveProblem(problem);
 

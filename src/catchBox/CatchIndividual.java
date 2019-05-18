@@ -48,8 +48,6 @@ public class CatchIndividual extends IntVectorIndividual<CatchProblemForGA, Catc
             distance += pairs.get(index).getValue();
             //atualizamos o cellcatch para a posicao proximaCell;
             cellCatch = proximaCell;
-
-            System.out.println();
         }
         Pair ultimoBoxAPorta= new Pair(cellCatch,problem.getDoor());
 

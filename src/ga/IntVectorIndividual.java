@@ -22,13 +22,12 @@ public abstract class IntVectorIndividual<P extends Problem, I extends IntVector
             while (true){
                 int rand = random.nextInt(size);
                 if(!usedValues.contains(rand)) {
-                    genome[i] = rand;
+                    genome[i] = rand;   
                     usedValues.add(rand);
                     break;
                 }
             }
         }
-        //System.out.println("boas");
         //throw new UnsupportedOperationException("Not Implemented Yet");
       }
 

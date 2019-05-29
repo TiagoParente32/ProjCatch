@@ -18,7 +18,7 @@ public abstract class IntVectorIndividual<P extends Problem, I extends IntVector
 
         //criar genoma com ordem das caixas a ser apanhadas
         for (int i = 0; i < genome.length; i++) {
-            //faz um loop para gerar sempre valores diferentes :)
+            //faz um loop para gerar sempre valores diferentes :):)))))))) ANY SMILLERS? :)
             while (true){
                 int rand = random.nextInt(size);
                 if(!usedValues.contains(rand)) {

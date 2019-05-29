@@ -130,7 +130,6 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
     @Override
     public String toString(){
         //TODO
-        //NOT sure se esta correto visto q esta a dar os mesmos valores q o cx
         return "OX";
         //throw new UnsupportedOperationException("Not Implemented Yet");
     }    

@@ -15,9 +15,12 @@ public class Mutation2<I extends IntVectorIndividual, P extends Problem<I>> exte
     @Override
     public void mutate(I ind) {
         //TODO
+        //estava a k<10 no algoritomo q eu vi mas alterei por mim, e parece estar mais effetivo
         for (int k = 0; k < 5; k++) {
+            //2 cortes random
             int cut1 = GeneticAlgorithm.random.nextInt(ind.getNumGenes());
             int cut2 = GeneticAlgorithm.random.nextInt(ind.getNumGenes());;
+            //garantir q c1 < c2
             while(cut1>=cut2){
                 cut1 = GeneticAlgorithm.random.nextInt(ind.getNumGenes());
                 cut2 = GeneticAlgorithm.random.nextInt(ind.getNumGenes());
@@ -38,32 +41,7 @@ public class Mutation2<I extends IntVectorIndividual, P extends Problem<I>> exte
         }
         //throw new UnsupportedOperationException("Not Implemented Yet");
     }
-    ////scramble method talvez substituia para experimentar
-    /*@Override
-    public void mutate(I ind) {
-        //TODO
 
-        for (int k = 0; k < 5; k++) {
-            int cut1 = GeneticAlgorithm.random.nextInt(ind.getNumGenes());
-            int cut2 = GeneticAlgorithm.random.nextInt(ind.getNumGenes());;
-            while(cut1>=cut2){
-                cut1 = GeneticAlgorithm.random.nextInt(ind.getNumGenes());
-                cut2 = GeneticAlgorithm.random.nextInt(ind.getNumGenes());
-            }
-            //this code inverts (i.e. reverses) elements between r1..r2 inclusive
-            Random r1 = new Random();
-            for (int i = 0; i < 10; i++) {
-                //r.nextInt((max - min) + 1) + min;
-                int i1 = r1.nextInt((cut2 - cut1)+1) + cut1;
-                int i2 = r1.nextInt((cut2 - cut1)+1) + cut1;
-
-                int aux = ind.getGene(i1);
-                ind.setGene(i1,ind.getGene(i2));
-                ind.setGene(i2,aux);
-            }
-        }
-        //throw new UnsupportedOperationException("Not Implemented Yet");
-    }*/
 
 
     @Override

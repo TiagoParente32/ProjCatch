@@ -3,6 +3,7 @@ package gui;
 import catchBox.CatchIndividual;
 import catchBox.CatchProblemForGA;
 import ga.geneticOperators.*;
+import ga.selectionMethods.RouletteWheel;
 import ga.selectionMethods.SelectionMethod;
 import ga.selectionMethods.Tournament;
 
@@ -25,7 +26,7 @@ public class PanelParameters extends PanelAtributesValue {
     JTextField textFieldSeed = new JTextField(SEED, TEXT_FIELD_LENGHT);
     JTextField textFieldN = new JTextField(POPULATION_SIZE, TEXT_FIELD_LENGHT);
     JTextField textFieldGenerations = new JTextField(GENERATIONS, TEXT_FIELD_LENGHT);
-    String[] selectionMethods = {"Tournament"};
+    String[] selectionMethods = {"Tournament","Roulette Wheel"};
     JComboBox comboBoxSelectionMethods = new JComboBox(selectionMethods);
     JTextField textFieldTournamentSize = new JTextField(TOURNAMENT_SIZE, TEXT_FIELD_LENGHT);
 
@@ -33,7 +34,7 @@ public class PanelParameters extends PanelAtributesValue {
     JComboBox comboBoxRecombinationMethods = new JComboBox(recombinationMethods);
     JTextField textFieldProbRecombination = new JTextField(PROB_RECOMBINATION, TEXT_FIELD_LENGHT);
 
-    String[] mutationMethods = {"Insert", "Swap", "Inversion"};
+    String[] mutationMethods = {"Insert", "Swap", "Inversion","Scramble"};
     JComboBox comboBoxMutationMethods = new JComboBox(mutationMethods);
     JTextField textFieldProbMutation = new JTextField(PROB_MUTATION, TEXT_FIELD_LENGHT);
 
@@ -102,6 +103,8 @@ public class PanelParameters extends PanelAtributesValue {
                 return new Tournament<>(
                         Integer.parseInt(textFieldN.getText()),
                         Integer.parseInt(textFieldTournamentSize.getText()));
+            case 1:
+                return new RouletteWheel<>(Integer.parseInt(textFieldN.getText()));
         }
         return null;
     }
@@ -131,6 +134,8 @@ public class PanelParameters extends PanelAtributesValue {
                 return new Mutation3<>(mutationProbability);
             case 2:
                 return new Mutation2<>(mutationProbability);
+            case 3:
+                return new Mutation4<>(mutationProbability);
         }
         return null;
     }

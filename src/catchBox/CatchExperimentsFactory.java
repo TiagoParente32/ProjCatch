@@ -6,6 +6,7 @@ import experiments.ExperimentsFactory;
 import ga.GAListener;
 import ga.GeneticAlgorithm;
 import ga.geneticOperators.*;
+import ga.selectionMethods.RouletteWheel;
 import ga.selectionMethods.SelectionMethod;
 import ga.selectionMethods.Tournament;
 import statisticsGA.StatisticBestAverage;
@@ -40,11 +41,21 @@ public class CatchExperimentsFactory extends ExperimentsFactory {
         populationSize = Integer.parseInt(getParameterValue("Population size"));
         maxGenerations = Integer.parseInt(getParameterValue("Max generations"));
 
-        //SELECTION 
+        //SELECTION
+        switch (getParameterValue("Selection")){
+            case "tournament" :
+                int tournamentSize = Integer.parseInt(getParameterValue("Tournament size"));
+                selection = new Tournament<>(populationSize, tournamentSize);
+                break;
+            case "roulette" :
+                selection = new RouletteWheel<>(populationSize);
+                break;
+        }
+        /*
         if (getParameterValue("Selection").equals("tournament")) {
             int tournamentSize = Integer.parseInt(getParameterValue("Tournament size"));
             selection = new Tournament<>(populationSize, tournamentSize);
-        }
+        }*/
 
         //RECOMBINATION
         double recombinationProbability = Double.parseDouble(getParameterValue("Recombination probability"));
@@ -52,10 +63,10 @@ public class CatchExperimentsFactory extends ExperimentsFactory {
             case "pmx":
                 recombination = new RecombinationPartialMapped<>(recombinationProbability);
                 break;
-            case "TODO1": //TODO
+            case "ox": //TODO
                 recombination = new Recombination3<>(recombinationProbability);
                 break;
-            case "TODO2": //TODO
+            case "cx": //TODO
                 recombination = new Recombination2<>(recombinationProbability);
                 break;
         }
@@ -66,11 +77,14 @@ public class CatchExperimentsFactory extends ExperimentsFactory {
             case "insert":
                 mutation = new MutationInsert<>(mutationProbability);
                 break;
-            case "TODO1": //TODO
+            case "swap": //TODO
                 mutation = new Mutation3<>(mutationProbability);
                 break;
-            case "TODO2": //TODO
+            case "inversion": //TODO
                 mutation = new Mutation2<>(mutationProbability);
+                break;
+            case "scramble": //TODO
+                mutation = new Mutation4<>(mutationProbability);
                 break;
         }
 

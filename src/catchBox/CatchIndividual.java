@@ -16,7 +16,6 @@ public class CatchIndividual extends IntVectorIndividual<CatchProblemForGA, Catc
 
     @Override
     public double computeFitness() {
-        //
         double fitness = Double.POSITIVE_INFINITY;
         this.fitness = fitness;
         double distance = 0;

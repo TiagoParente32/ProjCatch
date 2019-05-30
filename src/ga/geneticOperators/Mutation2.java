@@ -15,8 +15,8 @@ public class Mutation2<I extends IntVectorIndividual, P extends Problem<I>> exte
     @Override
     public void mutate(I ind) {
         //TODO
-        //estava a k<10 no algoritomo q eu vi mas alterei por mim, e parece estar mais effetivo
-        for (int k = 0; k < 5; k++) {
+        //com k<2 demora mais iteraçoes a chegar a um resultado (melhor) do q se fizesse isto apenas uma vez
+        for (int k = 0; k < 2; k++) {
             //2 cortes random
             int cut1 = GeneticAlgorithm.random.nextInt(ind.getNumGenes());
             int cut2 = GeneticAlgorithm.random.nextInt(ind.getNumGenes());;

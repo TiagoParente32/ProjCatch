@@ -1,5 +1,6 @@
 package ga.geneticOperators;
 
+import ga.GeneticAlgorithm;
 import ga.IntVectorIndividual;
 import ga.Problem;
 
@@ -16,8 +17,6 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
         super(probability);
     }
 
-    private int[] parent1;
-    private int[] parent2;
     private int[] offspring1;
     private int[] offspring2;
     private int cutPoint1;
@@ -30,24 +29,17 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
     public void recombine(I ind1, I ind2) {
         //TODO
         outerSegmentBuildArray = new ArrayList<Integer>();
-        this.parent1 = new int[ind1.getNumGenes()];
-        this.parent2 = new int[ind1.getNumGenes()];
 
-        for(int index = 0; index < ind1.getNumGenes(); index ++){
-            this.parent1[index] = ind1.getGene(index);
-            this.parent2[index] = ind2.getGene(index);
-        }
 
         offspring1 = new int[ind1.getNumGenes()];
         offspring2 = new int[ind1.getNumGenes()];
         // Generate Random cut points, must be unique from each other //
         // cutPoint2 should be greater than cutPoint1 //
-        int length = ind1.getNumGenes() - 1;
-        cutPoint1 = random.nextInt(length);
-        cutPoint2 = random.nextInt(length);
+        cutPoint2 = GeneticAlgorithm.random.nextInt(ind1.getNumGenes() - 1);
+        cutPoint1 = GeneticAlgorithm.random.nextInt(ind1.getNumGenes() - 1);
 
         while(cutPoint2 == cutPoint1){
-            cutPoint2 = random.nextInt(length);
+            cutPoint2 = GeneticAlgorithm.random.nextInt(ind1.getNumGenes() - 1);
         }
 
         if(cutPoint1 > cutPoint2){
@@ -58,6 +50,11 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
 
         crossOver(offspring1, ind1, ind2);
         crossOver(offspring2, ind2, ind1);
+
+        for (int i = 0; i < ind1.getNumGenes(); i++) {
+            ind1.setGene(i, offspring1[i]);
+            ind2.setGene(i, offspring2[i]);
+        }
 
         //throw new UnsupportedOperationException("Not Implemented Yet");
     }

@@ -16,7 +16,7 @@ public class Mutation4<I extends IntVectorIndividual, P extends Problem<I>> exte
     public void mutate(I ind) {
         //TODO
 
-        for (int k = 0; k < 5; k++) {
+        //for (int k = 0; k < 2; k++) {
             int cut1 = GeneticAlgorithm.random.nextInt(ind.getNumGenes());
             int cut2 = GeneticAlgorithm.random.nextInt(ind.getNumGenes());;
             while(cut1>=cut2){
@@ -34,7 +34,7 @@ public class Mutation4<I extends IntVectorIndividual, P extends Problem<I>> exte
                 ind.setGene(i1,ind.getGene(i2));
                 ind.setGene(i2,aux);
             }
-        }
+        //}
         //throw new UnsupportedOperationException("Not Implemented Yet");
     }
 

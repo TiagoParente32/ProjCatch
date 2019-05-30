@@ -339,6 +339,7 @@ public class MainFrame extends JFrame implements GAListener {
                                 break;
                             }
                             if ((i != genome.length))
+                                //talvez faça um outro metodo para ignorar as caixas pelas quais ja passou
                                 auxState = (CatchState) agentSearch.executeSolution();
                             if (i == 0)
                                 solution = auxSolution;

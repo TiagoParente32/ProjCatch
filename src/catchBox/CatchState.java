@@ -83,7 +83,6 @@ public class CatchState extends State implements Cloneable {
         action.execute(this);
         // TODO
         fireUpdatedEnvironment();
-        //nao alterei nada ainda mas tirei a exception
         //throw new UnsupportedOperationException("Not Implemented Yet"); // delete after implementing
     }
 

@@ -15,20 +15,13 @@ public class Recombination2<I extends IntVectorIndividual, P extends Problem<I>>
         super(probability);
     }
 
-    private int[] parent1;
-    private int[] parent2;
+    private int indLenght;
     private int[] offspring1;
     private int[] offspring2;
 
     @Override
     public void recombine(I ind1, I ind2) {
-        this.parent1 = new int[ind1.getNumGenes()];
-        this.parent2 = new int[ind2.getNumGenes()];
-
-        for(int index = 0; index < parent1.length; index ++){
-            this.parent1[index] = ind1.getGene(index);
-            this.parent2[index] = ind2.getGene(index);
-        }
+        indLenght = ind1.getNumGenes();
         offspring1 = new int[ind1.getNumGenes()];
         offspring2 = new int[ind2.getNumGenes()];
         for(int index = 0; index < offspring1.length; index++){
@@ -37,16 +30,21 @@ public class Recombination2<I extends IntVectorIndividual, P extends Problem<I>>
         }
         crossOver(offspring1, ind1, ind2);
         crossOver(offspring2, ind2, ind1);
+
+        //check if this is right
+        for (int i = 0; i < ind1.getNumGenes(); i++) {
+            ind1.setGene(i, offspring1[i]);
+            ind2.setGene(i, offspring2[i]);
+        }
 //        throw new UnsupportedOperationException("Not Implemented Yet");
     }
 
     // (1 x x 5 ) eg. element to search is 5 in 1st parent after 1 matches to 5..
     // (5 x x x )  // its position in parent 1 is 3.
 
-    private int getPosition_ofSecondParentElement_infirstParent
-            (I firstParent, int element_toSearch){
+    private int getPosition_ofSecondParentElement_infirstParent(I firstParent, int element_toSearch){
         int position = 0;
-        for(int index = 0; index < parent1.length; index++){
+        for(int index = 0; index < indLenght; index++){
             if(firstParent.getGene(index) == element_toSearch){
                 position = index;
                 break;

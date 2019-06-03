@@ -7,6 +7,9 @@ import utils.Maths;
 
 import java.io.File;
 
+import static catchBox.CatchExperimentsFactory.pathToFiles;
+import static catchBox.CatchExperimentsFactory.puzzleNumber;
+
 public class StatisticBestAverage<E extends Individual, P extends Problem<E>> implements GAListener  {
     
     private final double[] values;
@@ -14,9 +17,9 @@ public class StatisticBestAverage<E extends Individual, P extends Problem<E>> im
 
     public StatisticBestAverage(int numRuns, String experimentHeader) {
         values = new double[numRuns];
-        File file = new File("statistic_average_fitness.xls");
+        File file = new File(pathToFiles + "statistic_average_fitness_" + puzzleNumber +".xls");
         if(!file.exists()){
-            utils.FileOperations.appendToTextFile("statistic_average_fitness.xls", experimentHeader + "\t" + "Average:" + "\t" + "StdDev:" + "\r\n");
+            utils.FileOperations.appendToTextFile(pathToFiles + "statistic_average_fitness_" + puzzleNumber +".xls", experimentHeader + "\t" + "Average:" + "\t" + "StdDev:" + "\r\n");
         }
     }
 
@@ -37,6 +40,6 @@ public class StatisticBestAverage<E extends Individual, P extends Problem<E>> im
 
         String experimentConfigurationValues = ((Experiment) e.getSource()).getExperimentValues();
 
-        utils.FileOperations.appendToTextFile("statistic_average_fitness.xls", experimentConfigurationValues + "\t" + average + "\t" + sd + "\r\n");
+        utils.FileOperations.appendToTextFile(pathToFiles + "statistic_average_fitness_" + puzzleNumber +".xls", experimentConfigurationValues + "\t" + average + "\t" + sd + "\r\n");
     }
 }

@@ -28,11 +28,24 @@ public class CatchExperimentsFactory extends ExperimentsFactory {
     private CatchProblemForGA problem;
     private Experiment<CatchExperimentsFactory, CatchProblemForGA> experiment;
     private String file;
+    //qual e a config do puzzle que estamos a passar
+    public static String puzzleNumber;
+    public static String pathToFiles;
 
     public CatchExperimentsFactory(File configFile) throws IOException {
         super(configFile);
         if (getParameterValue("Problem file") != null)
             file = getParameterValue("Problem file");
+        //ir buscar o numero do puzzle
+        puzzleNumber = Character.toString(file.split("/")[2].charAt(7));
+        //Onde vai ser guardado o outPut dos testes
+        pathToFiles = "./Results/Puzzle_" + puzzleNumber +"/";
+        //se ainda nao exixtir o diretorio cria
+        File directory = new File(pathToFiles);
+        if (! directory.exists()){
+            directory.mkdirs();
+        }
+
     }
 
     @Override

@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
+import static catchBox.CatchExperimentsFactory.pathToFiles;
+import static catchBox.CatchExperimentsFactory.puzzleNumber;
+
 public class Main {
 
 
@@ -16,9 +19,19 @@ public class Main {
     public static void main(String[] args) {
 
         CatchExperimentsFactory experimentsFactory = null;
-
+        System.out.println("------------------------------------------------");
         try {
-            experimentsFactory = new CatchExperimentsFactory(new File("./config1.txt"));
+            if(args.length !=1){
+                System.out.println("To Run the program specify config file");
+                System.exit(1);
+            }
+            String argFileName = args[0];
+            String fileName = "./Configs/" + argFileName + ".txt";
+            System.out.println("[*] Loading File: " +fileName);
+            File directory = new File("./Configs");
+            System.out.println("[*] File Loaded");
+            directory.mkdir();
+            experimentsFactory = new CatchExperimentsFactory(new File(fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,16 +50,23 @@ public class Main {
                 p.setValue((int) s.getCost());
             }
 
+
+            System.out.println("[*] Running Tests For Puzzle: " + puzzleNumber);
+
             while (experimentsFactory.hasMoreExperiments()) {
                 try {
 
                     Experiment experiment = experimentsFactory.nextExperiment(agentSearch.getInitialBox(), pairs, agentSearch.getCellCatch(), agentSearch.getDoor());
                     experiment.run();
 
+
                 } catch (IOException e1) {
                     e1.printStackTrace(System.err);
                 }
             }
+            System.out.println("[*] Ran All Tests");
+            System.out.println("[*] Output Folder: " + pathToFiles);
+            System.out.println("------------------------------------------------");
         } catch (Exception e) {
             e.printStackTrace(System.err);
         }

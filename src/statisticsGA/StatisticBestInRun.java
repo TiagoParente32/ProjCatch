@@ -6,14 +6,17 @@ import ga.*;
 
 import java.io.File;
 
+import static catchBox.CatchExperimentsFactory.pathToFiles;
+import static catchBox.CatchExperimentsFactory.puzzleNumber;
+
 public class StatisticBestInRun<I extends Individual, P extends Problem<I>> implements GAListener {
 
     private I bestInExperiment;
 
     public StatisticBestInRun(String experimentHeader) {
-        File file = new File("statistic_best_per_experiment_fitness.xls");
+        File file = new File(pathToFiles + "statistic_best_per_experiment_fitness_" + puzzleNumber +".xls");
         if(!file.exists()){
-            utils.FileOperations.appendToTextFile("statistic_best_per_experiment_fitness.xls", experimentHeader + "\t" + "Fitness:" + "\r\n");
+            utils.FileOperations.appendToTextFile(pathToFiles+ "statistic_best_per_experiment_fitness_" + puzzleNumber +".xls", experimentHeader + "\t" + "Fitness:" + "\r\n");
         }
     }
 
@@ -36,7 +39,7 @@ public class StatisticBestInRun<I extends Individual, P extends Problem<I>> impl
         String experimentHeader = ((Experiment) e.getSource()).getExperimentHeader();
         String experimentConfigurationValues = ((Experiment) e.getSource()).getExperimentValues();
 
-        utils.FileOperations.appendToTextFile("statistic_best_per_experiment_fitness.xls", experimentConfigurationValues + "\t" + bestInExperiment.getFitness() + "\r\n");
-        utils.FileOperations.appendToTextFile("statistic_best_per_experiment.txt", "\r\n\r\n" + experimentTextualRepresentation + "\r\n" + bestInExperiment);
+        utils.FileOperations.appendToTextFile(pathToFiles + "statistic_best_per_experiment_fitness_" + puzzleNumber +".xls", experimentConfigurationValues + "\t" + bestInExperiment.getFitness() + "\r\n");
+        utils.FileOperations.appendToTextFile(pathToFiles+ "statistic_best_per_experiment_" + puzzleNumber + ".txt", "\r\n\r\n" + experimentTextualRepresentation + "\r\n" + bestInExperiment);
     }
 }

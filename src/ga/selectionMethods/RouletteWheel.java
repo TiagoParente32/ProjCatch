@@ -17,15 +17,36 @@ public class RouletteWheel <I extends Individual, P extends Problem<I>> extends 
     public Population<I, P> run(Population<I, P> original) {
 
         Population<I, P> result = new Population<>(original.getSize());
+        //alterar para rank selection :)
+        //https://www.youtube.com/watch?v=QX7D-dRgtW0
 
-        accumulated[0] = original.getIndividual(0).getFitness();
-        for (int i = 1; i < popSize; i++) {
+        accumulated[popSize-1] = original.getIndividual(0).getFitness();
+        /*for (int i = 1; i < popSize; i++) {
             accumulated[i] = accumulated[i - 1] + original.getIndividual(i).getFitness();
+        }*/
+        int pos = 0;
+        double aux = 0;
+        double total = popSize + popSize-1;
+        for (int i = popSize - 2; i >= 0; i--) {
+            pos = i;
+            accumulated[i] = original.getIndividual(i).getFitness();
+            //menor na posicao [popsize]
+            while(pos != popSize-1 && accumulated[pos]< accumulated[pos+1]){
+                aux = accumulated[pos+1];
+                accumulated[pos+1] = accumulated[pos];
+                accumulated[pos] = aux;
+                pos++;
+            }
+            total += i;
+            System.out.println();
         }
 
-        double fitnessSum = accumulated[popSize - 1];
-        for (int i = 0; i < popSize; i++) {
-            accumulated[i] /= fitnessSum;
+
+        //double fitnessSum = accumulated[popSize - 1];
+        accumulated[0] = (double)((1)/total);
+        for (int i = 1; i < popSize; i++) {
+            accumulated[i] = (double)((i+1)/total);
+            accumulated[i] += accumulated[i-1];
         }
 
         for (int i = 0; i < popSize; i++) {

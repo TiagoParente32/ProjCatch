@@ -23,6 +23,7 @@ public class Main {
         try {
             if(args.length !=1){
                 System.out.println("To Run the program specify config file");
+                System.out.println("------------------------------------------------");
                 System.exit(1);
             }
 
@@ -33,6 +34,7 @@ public class Main {
             File f = new File(fileName);
             if(!f.exists()) {
                 System.out.println("[*] File " +fileName + " doesnt Exits");
+                System.out.println("------------------------------------------------");
                 System.exit(2);
             }
 

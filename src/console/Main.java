@@ -25,9 +25,19 @@ public class Main {
                 System.out.println("To Run the program specify config file");
                 System.exit(1);
             }
+
             String argFileName = args[0];
+
             String fileName = "./Configs/" + argFileName + ".txt";
+
+            File f = new File(fileName);
+            if(!f.exists()) {
+                System.out.println("[*] File " +fileName + " doesnt Exits");
+                System.exit(2);
+            }
+
             System.out.println("[*] Loading File: " +fileName);
+
             File directory = new File("./Configs");
             System.out.println("[*] File Loaded");
             directory.mkdir();

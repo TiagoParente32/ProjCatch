@@ -71,11 +71,6 @@ public class CatchState extends State implements Cloneable {
             }
         }
 
-  /*      this.colunaGoal=2;
-        this.linhaGoal = 0;*/
-        //this.goal = setGoal();
-
-        //throw new UnsupportedOperationException("Not Implemented Yet");
     }
 
 
@@ -83,7 +78,6 @@ public class CatchState extends State implements Cloneable {
         action.execute(this);
         // TODO
         fireUpdatedEnvironment();
-        //throw new UnsupportedOperationException("Not Implemented Yet"); // delete after implementing
     }
 
     public boolean canMoveUp() {
@@ -105,8 +99,7 @@ public class CatchState extends State implements Cloneable {
         if(matrix[linhaCatch][colunaCatch+1]== Properties.WALL){
             return false;
         }
-        //return  catchAgentSearch.getCellCatch().getColumn()+1 < matrix[0].length && matrix[catchAgentSearch.getCellCatch().getLine()][catchAgentSearch.getCellCatch().getColumn()+1]!= Properties.WALL ;
-        //throw new UnsupportedOperationException("Not Implemented Yet");
+
         return true;
     }
 
@@ -118,8 +111,7 @@ public class CatchState extends State implements Cloneable {
         if(matrix[linhaCatch+1][colunaCatch]== Properties.WALL){
             return false;
         }
-        //return catchAgentSearch.getCellCatch().getLine()+1 < matrix.length && matrix[catchAgentSearch.getCellCatch().getLine()+1][catchAgentSearch.getCellCatch().getColumn()]!= Properties.WALL ;
-        //throw new UnsupportedOperationException("Not Implemented Yet");
+
         return true;
     }
 
@@ -131,8 +123,7 @@ public class CatchState extends State implements Cloneable {
         if(matrix[linhaCatch][colunaCatch-1] == Properties.WALL){
             return false;
         }
-        //return catchAgentSearch.getCellCatch().getColumn()-1 >= 0 && matrix[catchAgentSearch.getCellCatch().getLine()][catchAgentSearch.getCellCatch().getColumn()-1]!= Properties.WALL ;
-        //throw new UnsupportedOperationException("Not Implemented Yet");
+
         return true;
     }
 
@@ -200,7 +191,6 @@ public class CatchState extends State implements Cloneable {
     public int getNumBox() {
         //TODO
         return  numBox;
-        //throw new UnsupportedOperationException("Not Implemented Yet");
     }
 
     /*function heuristic(node) =

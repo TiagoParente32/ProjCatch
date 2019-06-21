@@ -5,10 +5,10 @@ import ga.Individual;
 import ga.Population;
 import ga.Problem;
 
-public class RouletteWheel <I extends Individual, P extends Problem<I>> extends SelectionMethod<I, P> {
+public class RankBasedSelection<I extends Individual, P extends Problem<I>> extends SelectionMethod<I, P> {
     double[] accumulated;
 
-    public RouletteWheel(int popSize) {
+    public RankBasedSelection(int popSize) {
         super(popSize);
         accumulated = new double[popSize];
     }
@@ -17,13 +17,9 @@ public class RouletteWheel <I extends Individual, P extends Problem<I>> extends 
     public Population<I, P> run(Population<I, P> original) {
 
         Population<I, P> result = new Population<>(original.getSize());
-        //alterar para rank selection :)
-        //https://www.youtube.com/watch?v=QX7D-dRgtW0
 
         accumulated[popSize-1] = original.getIndividual(0).getFitness();
-        /*for (int i = 1; i < popSize; i++) {
-            accumulated[i] = accumulated[i - 1] + original.getIndividual(i).getFitness();
-        }*/
+
         int pos = 0;
         double aux = 0;
         double total = popSize + popSize-1;
@@ -70,6 +66,6 @@ public class RouletteWheel <I extends Individual, P extends Problem<I>> extends 
 
     @Override
     public String toString(){
-        return "Roulette wheel";
+        return "Rank Based Selection";
     }
 }

@@ -6,12 +6,12 @@ import ga.Problem;
 
 import java.util.ArrayList;
 
-public class Recombination2<I extends IntVectorIndividual, P extends Problem<I>> extends Recombination<I, P> {
+public class RecombinationCX<I extends IntVectorIndividual, P extends Problem<I>> extends Recombination<I, P> {
 
     //TODO this class might require the definition of additional methods and/or attributes
     //CX
 
-    public Recombination2(double probability) {
+    public RecombinationCX(double probability) {
         super(probability);
     }
 
@@ -31,16 +31,15 @@ public class Recombination2<I extends IntVectorIndividual, P extends Problem<I>>
         crossOver(offspring1, ind1, ind2);
         crossOver(offspring2, ind2, ind1);
 
-        //check if this is right
         for (int i = 0; i < ind1.getNumGenes(); i++) {
             ind1.setGene(i, offspring1[i]);
             ind2.setGene(i, offspring2[i]);
         }
-//        throw new UnsupportedOperationException("Not Implemented Yet");
     }
 
-    // (1 x x 5 ) eg. element to search is 5 in 1st parent after 1 matches to 5..
-    // (5 x x x )  // its position in parent 1 is 3.
+
+    // (1 x x 5 ) ex.elemento q estamos a procurar é o 5 no primeiro progenitor depois de 1 corresponder ao 5 ..
+    // (5 x x x )  // a posicao no primeiro progenitor é a posicao 3
 
     private int getPosition_ofSecondParentElement_infirstParent(I firstParent, int element_toSearch){
         int position = 0;
@@ -53,8 +52,8 @@ public class Recombination2<I extends IntVectorIndividual, P extends Problem<I>>
         return position;
     }
 
-    // (1 x x 5 ) eg. element to search is 1, after look for it in 2nd parent.
-    // (5 x x 1 )  // 1 has already been filled so return true.
+    // (1 x x 5 ) eg. elemento q estamos a procurar é 1, depois procura lo no segundo progenitor
+    // (5 x x 1 )  1 ja foi preenchido logo return true
 
     private boolean element_already_inOffspring(int [] offspring, int element){
         for(int index = 0; index < offspring.length; index++){
@@ -86,6 +85,5 @@ public class Recombination2<I extends IntVectorIndividual, P extends Problem<I>>
     public String toString(){
         //TODO
         return "CX";
-        //throw new UnsupportedOperationException("CX");
     }    
 }

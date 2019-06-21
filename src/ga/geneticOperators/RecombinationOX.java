@@ -9,11 +9,11 @@ import java.util.Random;
 
 import static ga.GeneticAlgorithm.random;
 
-public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>> extends Recombination<I, P> {
+public class RecombinationOX<I extends IntVectorIndividual, P extends Problem<I>> extends Recombination<I, P> {
 
     //TODO this class might require the definition of additional methods and/or attributes
 
-    public Recombination3(double probability) {
+    public RecombinationOX(double probability) {
         super(probability);
     }
 
@@ -33,8 +33,8 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
 
         offspring1 = new int[ind1.getNumGenes()];
         offspring2 = new int[ind1.getNumGenes()];
-        // Generate Random cut points, must be unique from each other //
-        // cutPoint2 should be greater than cutPoint1 //
+        // 2 random points que devem ser diferentes
+        // cutPoint2 deve ser maior que cutPoint1 //
         cutPoint2 = GeneticAlgorithm.random.nextInt(ind1.getNumGenes() - 1);
         cutPoint1 = GeneticAlgorithm.random.nextInt(ind1.getNumGenes() - 1);
 
@@ -56,7 +56,6 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
             ind2.setGene(i, offspring2[i]);
         }
 
-        //throw new UnsupportedOperationException("Not Implemented Yet");
     }
 
     private void remove_SpecifiedElement(int elementToRemove){
@@ -72,14 +71,13 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
         int tempIndex = 0;
         int index = cutPoint2 + 1;
         // if index - cutPoint2 + 1  == ind1.length
-        // add all ind1 elements directly to  outerSegmentBuildArray ArrayList.
+        // add todos os elementos do ind1 diretamento para o outerSegmentBuildArray ArrayList.
         if(index == ind1.getNumGenes()) { // e.g. (1 2 3 | 4 5 6 7 8| )
             for(int x = 0; x < ind1.getNumGenes(); x++){
                 outerSegmentBuildArray.add(ind1.getGene(x));
             }
         }
-
-        // Else block here concatenates segments in the following order 3rd then (1 and 2)
+        //else concatenar os segmentos na ordem 3 depois 1 depois 2
         // outerSegmentBuildArray
         else {
             for(index = cutPoint2 + 1; index < ind1.getNumGenes(); index++){
@@ -95,19 +93,18 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
 
 
         for(int indexInSegment = cutPoint1; indexInSegment <=cutPoint2; indexInSegment++){
-            // for ArrayList temp remove elements that appear in ind2 mid segments
+            // for ArrayList temp remover elementos que aparecem no segmento central do individuo2
             remove_SpecifiedElement(ind2.getGene(indexInSegment));
         }
 
         for(int x = cutPoint1; x <= cutPoint2; x++){
-            // copy mid segment from parent designated as Y,
-            // into offspring to be created.
+            //copiar o segmento central do progenitor designado como Y
+            // para o offstring a ser criado.
             offspring[x] = ind2.getGene(x);
         }
 
-
-        // Belows section copies remaining elements in temp into offspring
-        // starting from 3rd segment of offspring.
+        // a secao abaixo copia os elementos restantes em temp para o offspring
+        // começando do terceiro segmento do offspring.
         tempIndex = 0;
         for(int y = cutPoint2 + 1; y < offspring.length; y++){
             if(y == offspring.length){ break; }
@@ -115,8 +112,8 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
             tempIndex++;
         }
 
-        // after end of offspring reach, copy elements from temp haven't been copied
-        // into offspring from 1st segment.
+        //depois de chegar ao fim do offspring, copiar elemntos do temp q ainda n foram copiados
+        // para o primeiro segmento do offspring.
         for(int z = 0; z < cutPoint1; z++){
             if(z == offspring.length){ break; }
             offspring[z] = outerSegmentBuildArray.get(tempIndex);
@@ -128,6 +125,5 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
     public String toString(){
         //TODO
         return "OX";
-        //throw new UnsupportedOperationException("Not Implemented Yet");
     }    
 }

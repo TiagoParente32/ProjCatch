@@ -49,7 +49,6 @@ public class CatchProblemSearch<S extends CatchState> extends Problem<S> {
 
         //devolver a lista de estados sucessores
         return sucessors;
-        //throw new UnsupportedOperationException("Not Implemented Yet");
     }
 
     public boolean isGoal(S state) {

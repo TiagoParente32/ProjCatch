@@ -63,7 +63,6 @@ public class CatchIndividual extends IntVectorIndividual<CatchProblemForGA, Catc
         this.fitness = fitness;
 
         return fitness;
-        //throw new UnsupportedOperationException("TODONot Implemented Yet");
     }
 
     public int[] getGenome() {

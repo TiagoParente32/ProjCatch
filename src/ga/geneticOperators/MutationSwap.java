@@ -4,16 +4,16 @@ import ga.GeneticAlgorithm;
 import ga.IntVectorIndividual;
 import ga.Problem;
 
-public class Mutation3<I extends IntVectorIndividual, P extends Problem<I>> extends Mutation<I, P> {
+public class MutationSwap<I extends IntVectorIndividual, P extends Problem<I>> extends Mutation<I, P> {
 
-    public Mutation3(double probability) {
+    public MutationSwap(double probability) {
         super(probability);
     }
 
     @Override
     public void mutate(I ind) {
         //TODO
-        //pode se fazer mais q uma vez se , mas nao me parece mt melhor
+        //pode se fazer mais q uma vez
         //for (int i = 0; i < 2; i++) {
 
             //indice do primeiro sitio onde substituir
@@ -33,13 +33,11 @@ public class Mutation3<I extends IntVectorIndividual, P extends Problem<I>> exte
             ind.setGene(cut2,aux);
         //}
 
-        //throw new UnsupportedOperationException("Not Implemented Yet");
     }
 
     @Override
     public String toString() {
         //TODO
         return "Swap";
-        //throw new UnsupportedOperationException("Not Implemented Yet");
     }
 }

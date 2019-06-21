@@ -3,7 +3,7 @@ package gui;
 import catchBox.CatchIndividual;
 import catchBox.CatchProblemForGA;
 import ga.geneticOperators.*;
-import ga.selectionMethods.RouletteWheel;
+import ga.selectionMethods.RankBasedSelection;
 import ga.selectionMethods.SelectionMethod;
 import ga.selectionMethods.Tournament;
 
@@ -26,7 +26,7 @@ public class PanelParameters extends PanelAtributesValue {
     JTextField textFieldSeed = new JTextField(SEED, TEXT_FIELD_LENGHT);
     JTextField textFieldN = new JTextField(POPULATION_SIZE, TEXT_FIELD_LENGHT);
     JTextField textFieldGenerations = new JTextField(GENERATIONS, TEXT_FIELD_LENGHT);
-    String[] selectionMethods = {"Tournament","Roulette Wheel"};
+    String[] selectionMethods = {"Tournament","Rank Based Selection"};
     JComboBox comboBoxSelectionMethods = new JComboBox(selectionMethods);
     JTextField textFieldTournamentSize = new JTextField(TOURNAMENT_SIZE, TEXT_FIELD_LENGHT);
 
@@ -104,7 +104,7 @@ public class PanelParameters extends PanelAtributesValue {
                         Integer.parseInt(textFieldN.getText()),
                         Integer.parseInt(textFieldTournamentSize.getText()));
             case 1:
-                return new RouletteWheel<>(Integer.parseInt(textFieldN.getText()));
+                return new RankBasedSelection<>(Integer.parseInt(textFieldN.getText()));
         }
         return null;
     }
@@ -118,9 +118,9 @@ public class PanelParameters extends PanelAtributesValue {
             case 0:
                 return new RecombinationPartialMapped<>(recombinationProb);
             case 1:
-                return new Recombination3<>(recombinationProb);
+                return new RecombinationOX<>(recombinationProb);
             case 2:
-                return new Recombination2<>(recombinationProb);
+                return new RecombinationCX<>(recombinationProb);
         }
         return null;
     }
@@ -131,11 +131,11 @@ public class PanelParameters extends PanelAtributesValue {
             case 0:
                 return new MutationInsert<>(mutationProbability);
             case 1:
-                return new Mutation3<>(mutationProbability);
+                return new MutationSwap<>(mutationProbability);
             case 2:
-                return new Mutation2<>(mutationProbability);
+                return new MutationInversion<>(mutationProbability);
             case 3:
-                return new Mutation4<>(mutationProbability);
+                return new MutationScramble<>(mutationProbability);
         }
         return null;
     }

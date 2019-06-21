@@ -6,7 +6,7 @@ import experiments.ExperimentsFactory;
 import ga.GAListener;
 import ga.GeneticAlgorithm;
 import ga.geneticOperators.*;
-import ga.selectionMethods.RouletteWheel;
+import ga.selectionMethods.RankBasedSelection;
 import ga.selectionMethods.SelectionMethod;
 import ga.selectionMethods.Tournament;
 import statisticsGA.StatisticBestAverage;
@@ -61,7 +61,7 @@ public class CatchExperimentsFactory extends ExperimentsFactory {
                 selection = new Tournament<>(populationSize, tournamentSize);
                 break;
             case "roulette" :
-                selection = new RouletteWheel<>(populationSize);
+                selection = new RankBasedSelection<>(populationSize);
                 break;
         }
         /*
@@ -77,10 +77,10 @@ public class CatchExperimentsFactory extends ExperimentsFactory {
                 recombination = new RecombinationPartialMapped<>(recombinationProbability);
                 break;
             case "ox": //TODO
-                recombination = new Recombination3<>(recombinationProbability);
+                recombination = new RecombinationOX<>(recombinationProbability);
                 break;
             case "cx": //TODO
-                recombination = new Recombination2<>(recombinationProbability);
+                recombination = new RecombinationCX<>(recombinationProbability);
                 break;
         }
 
@@ -91,13 +91,13 @@ public class CatchExperimentsFactory extends ExperimentsFactory {
                 mutation = new MutationInsert<>(mutationProbability);
                 break;
             case "swap": //TODO
-                mutation = new Mutation3<>(mutationProbability);
+                mutation = new MutationSwap<>(mutationProbability);
                 break;
             case "inversion": //TODO
-                mutation = new Mutation2<>(mutationProbability);
+                mutation = new MutationInversion<>(mutationProbability);
                 break;
             case "scramble": //TODO
-                mutation = new Mutation4<>(mutationProbability);
+                mutation = new MutationScramble<>(mutationProbability);
                 break;
         }
 

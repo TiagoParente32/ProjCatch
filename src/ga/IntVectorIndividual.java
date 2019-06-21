@@ -28,7 +28,6 @@ public abstract class IntVectorIndividual<P extends Problem, I extends IntVector
                 }
             }
         }
-        //throw new UnsupportedOperationException("Not Implemented Yet");
       }
 
     public IntVectorIndividual(IntVectorIndividual<P, I> original) {
